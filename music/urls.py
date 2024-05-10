@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from django.urls import include
 
 urlpatterns = [
-    path(route='', view=views.home),
-    path(route='recommendations/', view=views.recommendations),
-    path('admin/', admin.site.urls),
+    path(route='', view=include('index.urls')),
+    path(route='recommendations/', view=include('recommender.urls')),
+    path('admin/', admin.site.urls)
 ]
