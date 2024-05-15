@@ -12,3 +12,15 @@ def recommendations(request):
         template_name='recommender/recommendations.html',
         context=recommendations
     )
+
+def localMusic(request):
+    local = {
+        'songs': ['Mbada', 'Nakazi', 'Futula'],
+        'artist': 'Bobi Wine',
+        'genre': 'Ragga'
+    }
+    return render(
+        request=request,
+        template_name='recommender/local.html',
+        context=local
+    )
