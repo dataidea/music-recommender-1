@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import ProfileForm
 
 # Create your views here.
 def signin(request):
@@ -22,8 +23,13 @@ def signin(request):
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+    
         if form.is_valid():
-            form.save()
+            user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             return redirect('/accounts/signin')
     else:
         form = CustomUserCreationForm()
