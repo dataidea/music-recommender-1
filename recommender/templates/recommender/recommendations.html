@@ -19,11 +19,18 @@
   </head>
   <body>
     <h1>Recommendations</h1>
-    <h2>Artist: {{artist}}</h2>
     <h2>Genre: {{genre}}</h2>
     <ul>
       {% for song in songs %}
-      <li>{{song}}</li>
+      <li>{{song.title}} - {{song.artist}}</li>
+      {% endfor %}
+    </ul>
+
+    <!-- others -->
+    <h2>Other Songs</h2>
+    <ul>
+      {% for song in others %}
+      <li>{{song.title}} - {{song.artist}}</li>
       {% endfor %}
     </ul>
     <a href="/recommendations/local">Local</a>
